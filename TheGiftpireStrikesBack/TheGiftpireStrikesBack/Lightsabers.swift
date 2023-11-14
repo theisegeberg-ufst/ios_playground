@@ -26,3 +26,19 @@ extension Binding {
         }
     }
 }
+
+func flip<T>(_ binding: Binding<T?>) -> Binding<T>? {
+    switch binding.wrappedValue {
+    case .none:
+        return nil
+    case .some:
+        return .init(binding)
+    }
+}
+
+func flip<T>(_ binding: Binding<T>?) -> Binding<T?> {
+    guard let _ = binding else {
+        return .init(get: { nil }, set: { _ in })
+    }
+    return .init(binding!)
+}
