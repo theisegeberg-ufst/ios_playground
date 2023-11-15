@@ -37,10 +37,24 @@ struct Wine: Identifiable {
     
 }
 
-enum Gift {
-    
+enum Gift: Identifiable {
     #warning("The Empire doesn't like unidentified contraband, to get through the check points we need to make `Gift` Identifable!")
+    var id: String {
+        return randomIdentifier()
+    }
     
     case wine(Wine)
     case chocolate(Chocolate)
 }
+
+//// Is this cheating?
+//struct Gifts: Identifiable {
+//let id: String = randomIdentifier()
+
+//    enum Gift {
+//        #warning("The Empire doesn't like unidentified contraband, to get through the check points we need to make `Gift` Identifable!")
+//        case wine(Wine)
+//        case chocolate(Chocolate)
+//    }
+//
+//}
