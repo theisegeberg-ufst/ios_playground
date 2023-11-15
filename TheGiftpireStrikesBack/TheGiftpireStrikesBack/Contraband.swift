@@ -1,4 +1,3 @@
-
 import Foundation
 
 enum Nut {
@@ -38,9 +37,19 @@ struct Wine: Identifiable {
 }
 
 enum Gift {
-    
-    #warning("The Empire doesn't like unidentified contraband, to get through the check points we need to make `Gift` Identifable!")
-    
     case wine(Wine)
     case chocolate(Chocolate)
 }
+
+#warning("The Empire doesn't like unidentified contraband, to get through the check points we need to make `Gift` Identifable!")
+extension Gift: Identifiable {
+    var id: String {
+        switch self {
+        case .wine(let wine):
+            return wine.id
+        case .chocolate(let chocolate):
+            return chocolate.id
+        }
+    }
+}
+

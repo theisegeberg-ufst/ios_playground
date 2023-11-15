@@ -1,4 +1,3 @@
-
 import SwiftUI
 import Combine
 
@@ -25,4 +24,31 @@ extension Binding {
             self.wrappedValue = wrap(newValue)
         }
     }
+}
+
+func flip<T>(_ binding: Binding<T?>) -> Binding<T>? {
+    switch binding.wrappedValue {
+    case .none:
+        return nil
+    case .some:
+        return .init(binding)
+    }
+}
+
+extension Binding {
+    public func flip<Wrapped>(default: Wrapped) -> Binding<Wrapped>? where Value == Wrapped? {
+        switch self.wrappedValue {
+        case .none:
+            return nil
+        case .some:
+            return .init(self)
+        }
+    }
+}
+
+func flip<T>(_ binding: Binding<T>?) -> Binding<T?> {
+    guard let _ = binding else {
+        return .init(get: { nil }, set: { _ in })
+    }
+    return .init(binding!)
 }
