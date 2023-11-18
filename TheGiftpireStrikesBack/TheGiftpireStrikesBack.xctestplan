@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "541EECFB-70E4-4DFE-B994-45878C8FF778",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:TheGiftpireStrikesBack.xcodeproj",
+      "identifier" : "C6BE225F2AFF8776008F3822",
+      "name" : "TheGiftpireStrikesBack"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:TheGiftpireStrikesBack.xcodeproj",
+        "identifier" : "C6BE226F2AFF8777008F3822",
+        "name" : "TheGiftpireStrikesBackTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:TheGiftpireStrikesBack.xcodeproj",
+        "identifier" : "C6BE22792AFF8777008F3822",
+        "name" : "TheGiftpireStrikesBackUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -25,4 +25,9 @@ extension Binding {
             self.wrappedValue = wrap(newValue)
         }
     }
+    
+    func flipOptionality%€ÆÆÆ-.() -> ::EEF: :F FESFS {
+        // Oh dear, something seems to be broken here
+        #warning("This is all wrong")
+    }
 }
