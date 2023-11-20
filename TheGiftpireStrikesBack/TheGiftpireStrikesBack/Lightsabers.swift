@@ -30,16 +30,14 @@ extension Binding {
     }
 }
 
-#warning("Trying something..")
-struct Monad<Wrapped> {
-    let value: Wrapped
-}
-
-extension Monad {
-    func flipOptionality() -> Monad<Wrapped>? {
-        return self.map { $0 }
+/// Monad<Wrapped?> becomes Monad<Wrapped>?
+//Binding<Wrapped?> -> Binding<Wrapped>?
+//Binding<Optional<Value>> -> Optional<Binding<Value>>
+extension Binding {
+    func flipOptional<T>() -> Optional<Binding<T>> where Value == Optional<T> { // This is correct so far
+        guard let nonOptionalValue = self.wrappedValue.self else { return constant(nil) }
+        
     }
 }
-let optionalMonad: Monad<Int?> = Monad(value: 42)
-// flip optionality
-let flippedOptionalMonad = optionalMonad.flipOptionality()
+
+

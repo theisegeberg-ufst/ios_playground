@@ -50,6 +50,7 @@ extension Either {
         }
     }
     
+    // Higher order functions are functions that either takes as input a function or gives as output a function.
     func flatmap<C>(_ bc: (B)->(Either<A,C>)) -> Either<A,C> {
         flipped.flatMap { b in bc(b).flipped }.flipped
     }
