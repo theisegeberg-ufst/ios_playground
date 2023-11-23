@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C6457EA22B09399400F154E6 /* TheGiftpireStrikesBack.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TheGiftpireStrikesBack.xctestplan; sourceTree = "<group>"; };
 		C6BE22602AFF8776008F3822 /* TheGiftpireStrikesBack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheGiftpireStrikesBack.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6BE22632AFF8776008F3822 /* TheGiftpireStrikesBackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGiftpireStrikesBackApp.swift; sourceTree = "<group>"; };
 		C6BE22652AFF8776008F3822 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		C6BE22572AFF8776008F3822 = {
 			isa = PBXGroup;
 			children = (
+				C6457EA22B09399400F154E6 /* TheGiftpireStrikesBack.xctestplan */,
 				C6BE22622AFF8776008F3822 /* TheGiftpireStrikesBack */,
 				C6BE22732AFF8777008F3822 /* TheGiftpireStrikesBackTests */,
 				C6BE227D2AFF8777008F3822 /* TheGiftpireStrikesBackUITests */,
