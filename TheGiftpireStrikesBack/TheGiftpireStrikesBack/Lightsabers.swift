@@ -35,8 +35,14 @@ extension Binding {
 //Binding<Optional<Value>> -> Optional<Binding<Value>>
 extension Binding {
     func flipOptional<T>() -> Optional<Binding<T>> where Value == Optional<T> { // This is correct so far
-        guard let nonOptionalValue = self.wrappedValue.self else { return constant(nil) }
+        guard let wrappedValue = self.wrappedValue else { return nil }
         
+        return Binding<T>(
+            get: { wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue.map { Optional.some($0) }
+            }
+        )
     }
 }
 
