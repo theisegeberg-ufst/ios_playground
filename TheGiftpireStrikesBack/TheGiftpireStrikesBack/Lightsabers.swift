@@ -29,16 +29,10 @@ extension Binding {
         }
     }
     
-    func flipOptionality%€ÆÆÆ-.() -> ::EEF: :F FESFS {
-        // Oh dear, something seems to be broken here
-        #warning("This is all wrong")
-    }
-}
+    /// Monad<Wrapped?> becomes Monad<Wrapped>?
+    //Binding<Wrapped?> -> Binding<Wrapped>?
+    //Binding<Optional<Value>> -> Optional<Binding<Value>>
 
-/// Monad<Wrapped?> becomes Monad<Wrapped>?
-//Binding<Wrapped?> -> Binding<Wrapped>?
-//Binding<Optional<Value>> -> Optional<Binding<Value>>
-extension Binding {
     func flipOptional<T>() -> Optional<Binding<T>> where Value == Optional<T> { // This is correct so far
         guard let wrappedValue = self.wrappedValue else { return nil }
         
@@ -50,5 +44,9 @@ extension Binding {
         )
     }
 }
+
+
+
+
 
 
