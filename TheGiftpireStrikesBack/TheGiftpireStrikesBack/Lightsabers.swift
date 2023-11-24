@@ -26,8 +26,12 @@ extension Binding {
         }
     }
     
-    func flipOptionality%€ÆÆÆ-.() -> ::EEF: :F FESFS {
-        // Oh dear, something seems to be broken here
-        #warning("This is all wrong")
+    func flipOptionality<T>() -> Binding<T>? where Value == Optional<T> {
+        guard self.wrappedValue != nil else { return nil }
+        return Binding<T>{
+            self.wrappedValue!
+        } set: { newValue in
+            self.wrappedValue = newValue
+        }
     }
 }
