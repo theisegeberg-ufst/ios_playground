@@ -26,24 +26,12 @@ extension Binding {
         }
     }
     
-    func flipOptionality%€ÆÆÆ-.() -> ::EEF: :F FESFS {
-        // Oh dear, something seems to be broken here
-        #warning("This is all wrong")
+    func flipOptionality<T>() -> Binding<T>? where Value == Optional<T> {
+        guard self.wrappedValue != nil else { return nil }
+        return Binding<T>{
+            self.wrappedValue!
+        } set: { newValue in
+            self.wrappedValue = newValue
+        }
     }
-}
-
-func flip<T>(_ binding: Binding<T?>) -> Binding<T>? {
-    switch binding.wrappedValue {
-    case .none:
-        return nil
-    case .some:
-        return .init(binding)
-    }
-}
-
-func flip<T>(_ binding: Binding<T>?) -> Binding<T?> {
-    guard let _ = binding else {
-        return .init(get: { nil }, set: { _ in })
-    }
-    return .init(binding!)
 }
