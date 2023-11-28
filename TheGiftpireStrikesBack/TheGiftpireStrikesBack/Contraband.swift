@@ -37,10 +37,35 @@ struct Wine: Identifiable {
     
 }
 
-enum Gift {
+extension Gift {
+    #warning("Task 1")
+    /// The smugglers have a problem, they need to quickly unwrap the gifts, so can you
+    /// please add quick access to the contents.
+    var choco€%"=#?":Choc...
     
-    #warning("The Empire doesn't like unidentified contraband, to get through the check points we need to make `Gift` Identifable!")
+    var win...?%€€€:Wi...?
+    
+}
+
+#warning("Task 2")
+/// Well this is well broken. But using the tools we've built
+/// perhaps we can build bindings for chocolate and wine in here.
+extension Binding€%€%" {
+    var chocoB...Bind<=#"€"#>
+}
+
+enum Gift:Identifiable {
+
+    var id:String {
+        switch self {
+        case .wine(let wine):
+            wine.id
+        case .chocolate(let chocolate):
+            chocolate.id
+        }
+    }
     
     case wine(Wine)
     case chocolate(Chocolate)
 }
+

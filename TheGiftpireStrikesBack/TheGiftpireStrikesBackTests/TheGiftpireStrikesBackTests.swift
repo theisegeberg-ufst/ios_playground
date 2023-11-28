@@ -17,29 +17,46 @@ final class TheGiftpireStrikesBackTests: XCTestCase {
         var powerRating = 2
         var turbo:Int? = 2
         
-        init(int: Int = 2, optionalInt: Int? = nil) {
-            self.powerRating = int
-            self.turbo = optionalInt
+        init(powerRating: Int = 2, turbo: Int? = nil) {
+            self.powerRating = powerRating
+            self.turbo = turbo
         }
         
     }
     
-    func testPowerConverter() {
-        let object = PowerConverter(int: 10, optionalInt: nil)
+    func testProblemWithPowerConverters() {
+        let object = PowerConverter(powerRating: 10, turbo: 100)
         
         let binding:Binding<Int?> = Binding {
             object.turbo
         } set: {
             object.turbo = $0
         }
-        XCTAssertEqual(object.turbo, nil)
-        binding.wrappedValue = 2
-        XCTAssertEqual(object.turbo, 2)
-        let twirled = binding.flipOptionality()
-        XCTAssertEqual(twirled!.wrappedValue, 2)
+        
+        binding.wrappedValue = 1000
+        XCTAssertNotNil(binding.wrappedValue)
+        let twirl = binding.flipOptionality()
+        XCTAssertNotNil(twirl)
         binding.wrappedValue = nil
-        let twirled2 = binding.flipOptionality()
-        XCTAssertNil(twirled2)
+        
+        
+    }
+    
+    func testPowerConverter() {
+        let object = PowerConverter(powerRating: 10, turbo: 100)
+        
+        let binding:Binding<Int?> = Binding {
+            object.turbo
+        } set: {
+            object.turbo = $0
+        }
+        
+        binding.wrappedValue = 10
+        let twirled:Binding<Int>? = binding.flipOptionality()
+        binding.wrappedValue = 20
+        XCTAssertNotNil(twirled)
+        XCTAssertEqual(twirled?.wrappedValue, 20)
+        
     }
     
     func testContrabandIdentification() {
@@ -49,6 +66,34 @@ final class TheGiftpireStrikesBackTests: XCTestCase {
         let chocolateGift = Gift.chocolate(chocolate)
         XCTAssertEqual(wine.id, wineGift.id)
         XCTAssertEqual(chocolate.id, chocolateGift.id)
+    }
+    
+    func testNewBindings() {
+        /// Hmm looks like someone didn't care too much about
+        /// variable naming. I wonder if it was to avoid cheating.
+        var a = Gift.wine(.dessert)
+        var b = Gift.chocolate(.lindt90)
+        XCTAssertNil(a.chocolate)
+        XCTAssertNil(b.wine)
+        XCTAssertNotNil(a.wine)
+        XCTAssertNotNil(b.chocolate)
+        let c = Binding {
+            a
+        } set: { newValue in
+            a = newValue
+        }
+        XCTAssertNil(c.chocolateBinding)
+        XCTAssertNotNil(c.wineBinding)
+        let d = Binding {
+            b
+        } set: { newValue in
+            b = newValue
+        }
+        XCTAssertNil(d.wineBinding)
+        XCTAssertNotNil(d.chocolateBinding)
+        XCTAssertEqual(b.title, Chocolate.lindt90.brand)
+        d.wrappedValue = .chocolate(.ritterRumRaisins)
+        XCTAssertEqual(b.title, Chocolate.ritterRumRaisins.brand)
     }
 
 }
