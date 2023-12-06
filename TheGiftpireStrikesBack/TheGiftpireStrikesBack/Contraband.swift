@@ -1,4 +1,4 @@
-
+import SwiftUI
 import Foundation
 
 enum Nut {
@@ -41,20 +41,60 @@ extension Gift {
     #warning("Task 1")
     /// The smugglers have a problem, they need to quickly unwrap the gifts, so can you
     /// please add quick access to the contents.
-    var choco€%"=#?":Choc...
+    var chocolate: Chocolate? {
+        switch self {
+        case .wine:
+            return nil
+        case .chocolate(let chocolate):
+            return chocolate
+        }
+    }
     
-    var win...?%€€€:Wi...?
-    
+    var wine: Wine? {
+        switch self {
+        case .wine(let wine):
+            return wine
+        case .chocolate:
+            return nil
+        }
+    }
 }
 
 #warning("Task 2")
 /// Well this is well broken. But using the tools we've built
 /// perhaps we can build bindings for chocolate and wine in here.
-extension Binding€%€%" {
-    var chocoB...Bind<=#"€"#>
+extension Binding where Value == Gift {
+    
+    var chocolateBinding: Binding<Chocolate>? {
+        self.map {
+            $0.chocolate
+        } wrap: {
+            Gift.chocolate($0)
+        }
+        .flipOptionality()
+    }
+    
+    var wineBinding: Binding<Wine>? {
+        self.map {
+            $0.wine
+        } wrap: {
+            Gift.wine($0)
+        }
+        .flipOptionality()
+    }
 }
 
+
 enum Gift:Identifiable {
+    
+    var title: String {
+        switch self {
+        case .wine:
+            fatalError("What should the title be for wine? 🤓")
+        case .chocolate(let chocolate):
+            chocolate.brand
+        }
+    }
 
     var id:String {
         switch self {

@@ -71,29 +71,29 @@ final class TheGiftpireStrikesBackTests: XCTestCase {
     func testNewBindings() {
         /// Hmm looks like someone didn't care too much about
         /// variable naming. I wonder if it was to avoid cheating.
-        var a = Gift.wine(.dessert)
-        var b = Gift.chocolate(.lindt90)
-        XCTAssertNil(a.chocolate)
-        XCTAssertNil(b.wine)
-        XCTAssertNotNil(a.wine)
-        XCTAssertNotNil(b.chocolate)
-        let c = Binding {
-            a
+        var gift1 = Gift.wine(.dessert)
+        var gift2 = Gift.chocolate(.lindt90)
+        XCTAssertNil(gift1.chocolate)
+        XCTAssertNil(gift2.wine)
+        XCTAssertNotNil(gift1.wine)
+        XCTAssertNotNil(gift2.chocolate)
+        let gift1Binding = Binding {
+            gift1
         } set: { newValue in
-            a = newValue
+            gift1 = newValue
         }
-        XCTAssertNil(c.chocolateBinding)
-        XCTAssertNotNil(c.wineBinding)
-        let d = Binding {
-            b
+        XCTAssertNil(gift1Binding.chocolateBinding)
+        XCTAssertNotNil(gift1Binding.wineBinding)
+        let gift2Binding = Binding {
+            gift2
         } set: { newValue in
-            b = newValue
+            gift2 = newValue
         }
-        XCTAssertNil(d.wineBinding)
-        XCTAssertNotNil(d.chocolateBinding)
-        XCTAssertEqual(b.title, Chocolate.lindt90.brand)
-        d.wrappedValue = .chocolate(.ritterRumRaisins)
-        XCTAssertEqual(b.title, Chocolate.ritterRumRaisins.brand)
+        XCTAssertNil(gift2Binding.wineBinding)
+        XCTAssertNotNil(gift2Binding.chocolateBinding)
+        XCTAssertEqual(gift2.title, Chocolate.lindt90.brand)
+        gift2Binding.wrappedValue = .chocolate(.ritterRumRaisins)
+        XCTAssertEqual(gift2.title, Chocolate.ritterRumRaisins.brand)
     }
 
 }
