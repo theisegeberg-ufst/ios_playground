@@ -23,6 +23,4 @@ extension Binding {
             }
         )
     }
-
-    
 }
